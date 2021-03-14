@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoIntersectionFinder", "LogoIntersectionFinder\LogoIntersectionFinder.csproj", "{1071DEC0-CED3-4603-AEFE-12C64DF3B598}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsProject", "TestsProject\TestsProject.csproj", "{4E2A17D5-69D0-4A79-B2A0-B6F2F1F4BE70}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1071DEC0-CED3-4603-AEFE-12C64DF3B598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1071DEC0-CED3-4603-AEFE-12C64DF3B598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1071DEC0-CED3-4603-AEFE-12C64DF3B598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1071DEC0-CED3-4603-AEFE-12C64DF3B598}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E2A17D5-69D0-4A79-B2A0-B6F2F1F4BE70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E2A17D5-69D0-4A79-B2A0-B6F2F1F4BE70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E2A17D5-69D0-4A79-B2A0-B6F2F1F4BE70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E2A17D5-69D0-4A79-B2A0-B6F2F1F4BE70}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7971C326-AA81-42FF-87C4-9D6C854DC2E5}
+	EndGlobalSection
+EndGlobal

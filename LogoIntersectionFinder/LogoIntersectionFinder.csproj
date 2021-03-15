@@ -40,17 +40,16 @@
     <Compile Include="Helpers\Point.cs" />
     <Compile Include="Helpers\Segment.cs" />
     <Compile Include="Helpers\Vector.cs" />
+    <Compile Include="LogoParser\Turtle.cs" />
     <Compile Include="Starter.cs" />
-    <Compile Include="SweepAlgorithm\Event.cs" />
-    <Compile Include="SweepAlgorithm\EventIntersectionChecker.cs" />
-    <Compile Include="SweepAlgorithm\EventSegment.cs" />
-    <Compile Include="SweepAlgorithm\EventSegmentType.cs" />
-    <Compile Include="SweepAlgorithm\SegmentIntersectionChecker.cs" />
-    <Compile Include="SweepAlgorithm\SweepAlgorithm.cs" />
+    <Compile Include="Sweep\Event.cs" />
+    <Compile Include="Sweep\EventIntersectionChecker.cs" />
+    <Compile Include="Sweep\EventSegment.cs" />
+    <Compile Include="Sweep\EventSegmentType.cs" />
+    <Compile Include="Sweep\SegmentIntersectionChecker.cs" />
+    <Compile Include="Sweep\SweepAlgorithm.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LogoParser\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>

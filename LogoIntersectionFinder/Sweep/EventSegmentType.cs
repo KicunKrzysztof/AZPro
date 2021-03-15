@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogoIntersectionFinder.SweepAlgorithm
+namespace LogoIntersectionFinder.Sweep
 {
     public enum EventSegmentType
     {

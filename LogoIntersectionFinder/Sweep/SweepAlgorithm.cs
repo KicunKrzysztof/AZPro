@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LogoIntersectionFinder.Helpers;
 
-namespace LogoIntersectionFinder.SweepAlgorithm
+namespace LogoIntersectionFinder.Sweep
 {
     public class SweepAlgorithm
     {

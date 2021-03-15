@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using LogoIntersectionFinder.SweepAlgorithm;
+using LogoIntersectionFinder.Sweep;
 using LogoIntersectionFinder.Helpers;
 
 namespace TestsProject

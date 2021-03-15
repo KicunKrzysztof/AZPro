@@ -73,9 +73,10 @@ namespace LogoIntersectionFinder.Helpers
             Point p2 = new Point(p.X - p_left.X, p.Y - p_left.Y);
             return p1.X * p2.Y - p2.X * p1.Y > 0 ? true : false;
         }
-        public static bool operator ==(Segment p1, Segment p2)
+        public static bool operator ==(Segment s1, Segment s2)
         {
-            return (p1.Point1 == p2.Point1 && p1.Point2 == p2.Point2) || (p1.Point1 == p2.Point2 && p1.Point2 == p2.Point1);
+            return (s1.Id == s2.Id) &&
+                ((s1.Point1 == s2.Point1 && s1.Point2 == s2.Point2) || (s1.Point1 == s2.Point2 && s1.Point2 == s2.Point1));
         }
         public static bool operator !=(Segment s1, Segment s2)
         {

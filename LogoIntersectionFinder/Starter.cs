@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LogoIntersectionFinder.Sweep;
-using LogoIntersectionFinder.Helpers;
 using LogoIntersectionFinder.LogoParser;
 using System.IO;
 
@@ -68,12 +67,6 @@ namespace LogoIntersectionFinder
                         Console.WriteLine("Nie zawiera przecięcia");
                 }
             }
-
-            //var segmentList = myTurtle.Parse("fd 50 rt 90 fd 10 rt 90 fd 10 rt 90 fd 5");
-            //var segmentList = myTurtle.Parse("fd 50 rt 90 fd 10 rt 90 fd 10 rt 90 fd 50");
-            //var segmentList = myTurtle.Parse("fd 50 rt 90 fd 10 rt 90 fd 10 rt 90 fd 50");
-            //var segmentList = myTurtle.Parse("fd 50 bk 10");
-            //var segmentList = myTurtle.Parse("   rt   45 fd 50 bk 10");
         }
     }
 }

@@ -27,6 +27,8 @@ namespace LogoIntersectionFinder.Sweep
                     Segment seg = e.Segments[i].Segment;
                     if (seg.GetLeftPoint() == e.P)//lewy koniec, dodanie do miotły
                     {
+                        if (sweep.TryGetValue(seg, out _))//odcinki nakładające się
+                            return true;
                         sweep.Add(seg, seg);
                         int idx = sweep.IndexOfKey(seg);
                         if (idx > 0 && CheckIntersection(sweepList[idx - 1], sweepList[idx]))

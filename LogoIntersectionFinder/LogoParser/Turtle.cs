@@ -21,9 +21,10 @@ namespace LogoIntersectionFinder.LogoParser
         public List<Segment> Parse(string logoProgram)
         {
             ResetTurtle();
-            string[] tokens = logoProgram.Split();
+            var tokens= logoProgram.Split().ToList();
+            tokens.RemoveAll(t => t.Equals(""));
             int i = 0;
-            while (i < tokens.Count())
+            while (i < tokens.Count)
             {
                 switch (tokens[i])
                 {

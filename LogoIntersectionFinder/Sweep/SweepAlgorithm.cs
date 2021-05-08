@@ -1,25 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LogoIntersectionFinder.Helpers;
 
 namespace LogoIntersectionFinder.Sweep
 {
     public class SweepAlgorithm
     {
-        private SortedList<Event, Event> eventsQueue;
-        private SortedList<Segment, Segment> sweep;
-        private IList<Segment> sweepList;
+        private AVL<Event> eventsQueue;
+        private AVL<Segment> sweep;
         public bool FindIntersection(List<Segment> segments)
         {
             InitializeEventList(segments);
-            sweep = new SortedList<Segment, Segment>();
-            sweepList = sweep.Values;
-            while(eventsQueue.Count != 0)
+            sweep = new AVL<Segment>();
+            while(!eventsQueue.IsEmpty())
             {
-                Event e = eventsQueue.Keys[0];
+                Event e = eventsQueue.GetMin();
                 for (int i = 0; i < e.Segments.Count; i++)// EventSegment seg in e.Segments.Where(seg => seg.Type == EventSegmentType.OnEnd))//odcinki OnMiddle już są i zostają na miotle
                 {
                     if (e.Segments[i].Type == EventSegmentType.OnMiddle)
@@ -27,32 +22,28 @@ namespace LogoIntersectionFinder.Sweep
                     Segment seg = e.Segments[i].Segment;
                     if (seg.GetLeftPoint() == e.P)//lewy koniec, dodanie do miotły
                     {
-                        if (sweep.TryGetValue(seg, out _))//odcinki nakładające się
+                        if(sweep.Find(seg) != null)//odcinki nakładające się
                             return true;
-                        sweep.Add(seg, seg);
-                        int idx = sweep.IndexOfKey(seg);
-                        if (idx > 0 && CheckIntersection(sweepList[idx - 1], sweepList[idx]))
-                        {
+                        sweep.Add(seg);
+                        Segment prev = sweep.FindPrev(seg);
+                        Segment next = sweep.FindNext(seg);
+                        if (prev != null && CheckIntersection(prev, seg))
                             return true;
-                        }
-                        if (idx + 1 < sweepList.Count && CheckIntersection(sweepList[idx], sweepList[idx + 1]))
-                        {
+                        if (next != null && CheckIntersection(seg, next))
                             return true;
-                        }
                     }
                     else//prawy koniec odcinka (usunięcie z miotły)
                     {
-                        int idx = sweep.IndexOfKey(seg);
-                        sweep.RemoveAt(idx);
-                        if (idx > 0 && idx < sweepList.Count && CheckIntersection(sweepList[idx - 1], sweepList[idx]))
-                        {
+                        Segment prev = sweep.FindPrev(seg);
+                        Segment next = sweep.FindNext(seg);
+                        sweep.Delete(seg);
+                        if (prev != null && next != null && CheckIntersection(prev, next))
                             return true;
-                        }
                     }
                 }
                 if (CheckComplexEventIntersection(e))
                     return true;
-                eventsQueue.RemoveAt(0);
+                eventsQueue.Delete(e);
             }
             return false;
         }
@@ -116,32 +107,33 @@ namespace LogoIntersectionFinder.Sweep
                     throw new Exception();
             }
             newEvent = new Event(p, segment1, s1EventType, segment2, s2EventType);
-            Event existingEvent;
-            if (eventsQueue.TryGetValue(newEvent, out existingEvent))
+            Event existingEvent = eventsQueue.Find(newEvent);
+            if (existingEvent != null)
             {
                 existingEvent.AddSegment(segment1, s1EventType);
                 existingEvent.AddSegment(segment2, s2EventType);
             }
             else
             {
-                eventsQueue.Add(newEvent, newEvent);
+                eventsQueue.Add(newEvent);
             }
         }
 
         private void InitializeEventList(List<Segment> segments)
         {
-            eventsQueue = new SortedList<Event, Event>();
+            eventsQueue = new AVL<Event>();
             foreach(Segment s in segments)
             {
                 Point entryPoint = s.GetLeftPoint();
                 Event newEvent = new Event(entryPoint, s), existingEvent;
-                if (eventsQueue.TryGetValue(newEvent, out existingEvent))
+                existingEvent = eventsQueue.Find(newEvent);
+                if (existingEvent != null)
                 {
                     existingEvent.AddSegment(s, EventSegmentType.OnEnd);
                 }
                 else
                 {
-                    eventsQueue.Add(newEvent, newEvent);
+                    eventsQueue.Add(newEvent);
                 }
             }
         }

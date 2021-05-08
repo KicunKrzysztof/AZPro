@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using LogoIntersectionFinder.LogoParser;
 using LogoIntersectionFinder.Sweep;
 
@@ -10,9 +9,9 @@ namespace TestsProject
     {
         [TestMethod]
         [DataRow("fd 100 bk 100")]
-        //[DataRow("fd 100 pu bk 50 lt 90 fd 50 lt 180 pd fd 100")]
-        //[DataRow("fd 100 pu bk 50 lt 90 fd 50 lt 180 pd fd 50 fd 50")]
-        //[DataRow("fd 100 pu bk 50 lt 90 fd 50 lt 180 pd fd 50 lt 45 fd 50")]
+        [DataRow("fd 100 pu bk 50 lt 90 fd 50 lt 180 pd fd 100")]
+        [DataRow("fd 100 pu bk 50 lt 90 fd 50 lt 180 pd fd 50 fd 50")]
+        [DataRow("fd 100 pu bk 50 lt 90 fd 50 lt 180 pd fd 50 lt 45 fd 50")]
         public void TestMethodIntersectionOccurs(string program)
         {
             Turtle myTurtle = new Turtle();

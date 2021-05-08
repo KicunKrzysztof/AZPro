@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LogoIntersectionFinder.Helpers
+﻿namespace LogoIntersectionFinder.Helpers
 {
     //dwa odcinki to 4 punkty: P1, P2, P3, P4
     public enum IntersectionType

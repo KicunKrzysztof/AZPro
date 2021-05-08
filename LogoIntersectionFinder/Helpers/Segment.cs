@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LogoIntersectionFinder.Helpers
 {
@@ -75,6 +71,11 @@ namespace LogoIntersectionFinder.Helpers
         }
         public static bool operator ==(Segment s1, Segment s2)
         {
+            if(object.ReferenceEquals(s1, null))
+                return object.ReferenceEquals(s2, null);
+            if (object.ReferenceEquals(s2, null))
+                return false;
+
             return (s1.Id == s2.Id) &&
                 ((s1.Point1 == s2.Point1 && s1.Point2 == s2.Point2) || (s1.Point1 == s2.Point2 && s1.Point2 == s2.Point1));
         }

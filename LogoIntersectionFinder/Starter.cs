@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using LogoIntersectionFinder.Sweep;
 using LogoIntersectionFinder.LogoParser;
+using LogoIntersectionFinder.Helpers;
 using System.IO;
+using System.Linq;
 
 namespace LogoIntersectionFinder
 {
@@ -25,17 +24,36 @@ namespace LogoIntersectionFinder
             Console.WriteLine("rt X");
             Console.WriteLine("Key in logo program here, or file with semicolon-separated programs");
             Console.WriteLine("Key in \"exit\" to close");
+            Console.WriteLine("Key in \"filegen\" to generate file");
             Console.WriteLine("########################################################");
             Console.WriteLine("########################################################");
-            
+
             Turtle myTurtle = new Turtle();
             SweepAlgorithm SweepAlgorithm = new SweepAlgorithm();
 
+            StringBuilder logBuilder = new StringBuilder();
+            logBuilder.AppendLine();
+            logBuilder.AppendLine("########################################################");
+            logBuilder.AppendLine("########################################################");
             while (true)
             {
                 string input = Console.ReadLine();
                 if (input.Equals("exit"))
                     break;
+                if (input.Equals("filegen"))
+                {
+                    Console.WriteLine("Write number of logo commends for file");
+                    logBuilder.AppendLine("Write number of logo commends for file");
+                    int fileLen = 0;
+                    if (int.TryParse(Console.ReadLine(), out fileLen))
+                    {
+                        Console.WriteLine("Write filename");
+                        logBuilder.AppendLine("Write filename");
+                        string filename = Console.ReadLine();
+                        FileGenerator.GenerateFile(filename, fileLen);
+                    }
+                    continue;
+                }
                 string program;
                 try
                 {
@@ -50,22 +68,37 @@ namespace LogoIntersectionFinder
                     program = input;
                 }
                 var programs = program.Split(';').ToList();
-                foreach(string p in programs)
+                foreach (string p in programs)
                 {
                     Console.WriteLine("--------------------------------------------------------");
-                    Console.WriteLine($"Program logo: \"{p}\"");
+                    logBuilder.AppendLine("--------------------------------------------------------");
+                    Console.WriteLine($"Program logo: \"{p.Trim()}\"");
+                    logBuilder.AppendLine($"Program logo: \"{p.Trim()}\"");
                     var segmentList = myTurtle.Parse(p);
-                    if(segmentList == null)
+                    if (segmentList == null)
                     {
                         Console.WriteLine("Zawiera błąd");
+                        logBuilder.AppendLine("Zawiera błąd");
                         continue;
                     }
                     bool intersection = SweepAlgorithm.FindIntersection(segmentList);
-                    if(intersection)
+                    if (intersection)
+                    {
                         Console.WriteLine("Zawiera przecięcie");
+                        logBuilder.AppendLine("Zawiera przecięcie");
+                    }
                     else
+                    {
                         Console.WriteLine("Nie zawiera przecięcia");
+                        logBuilder.AppendLine("Nie zawiera przecięcia");
+                    }
                 }
+                using (StreamWriter s = File.AppendText("logs.txt"))
+                {
+                    s.WriteLine($"Logging date: {DateTime.Now}");
+                    s.Write(logBuilder.ToString());
+                }
+                logBuilder = new StringBuilder();
             }
         }
     }

@@ -100,10 +100,21 @@ namespace LogoIntersectionFinder.Helpers
         }
         public void Add(U data)
         {
+            //Log("Adding", data);
+
             Node<U> newNode = new Node<U>(data);
             bool uselessHeightChangeParam = false;
             RecursiveInsert(ref root, newNode, ref uselessHeightChangeParam);
         }
+
+        private void Log(string v, U data)
+        {
+            int num = 0;
+            Console.WriteLine($"{v} {data.ToString()}");
+            Console.WriteLine(AVL<U>.Print(root, ref num, true).ToString());
+            Console.WriteLine(); Console.WriteLine();
+        }
+
         private void RecursiveInsert(ref Node<U> current, Node<U> newNode, ref bool heightChange)
         {
             if (current == null)
@@ -166,6 +177,7 @@ namespace LogoIntersectionFinder.Helpers
 
         public void Delete(U data)
         {
+            //Log("Deleting", data);
             bool uselessHeightChangeParam = false;
             RecursiveDelete(ref root, data, ref uselessHeightChangeParam);
         }
@@ -192,6 +204,11 @@ namespace LogoIntersectionFinder.Helpers
                     {
                         if (current.right.balanceFactor == -1)
                             RotateRR(ref current);
+                        else if (current.right.balanceFactor == 0)
+                        {
+                            RotateRR(ref current);
+                            heightChange = false;
+                        }
                         else
                             RotateRL(ref current);
                     }
@@ -202,7 +219,6 @@ namespace LogoIntersectionFinder.Helpers
             {
                 if (current.left == null || current.right == null)
                 {
-                    //Node<U> tmp = current.left == null ? current.right : current.left;
                     current = current.left == null ? current.right : current.left;
                     heightChange = true;
                     done = true;
@@ -231,6 +247,11 @@ namespace LogoIntersectionFinder.Helpers
                     {
                         if (current.left.balanceFactor == 1)
                             RotateLL(ref current);
+                        else if (current.left.balanceFactor == 0)
+                        {
+                            RotateLL(ref current);
+                            heightChange = false;
+                        }
                         else
                             RotateLR(ref current);
                     }

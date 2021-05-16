@@ -83,5 +83,9 @@ namespace LogoIntersectionFinder.Helpers
         {
             return !(s1 == s2);
         }
+        public override string ToString()
+        {
+            return $"{Point1.ToString()} _____ {Point2.ToString()}";
+        }
     }
 }

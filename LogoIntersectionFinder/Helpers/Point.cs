@@ -39,5 +39,9 @@
         {
             return !(p1 == p2);
         }
+        public override string ToString()
+        {
+            return $"({X}; {Y})";
+        }
     }
 }

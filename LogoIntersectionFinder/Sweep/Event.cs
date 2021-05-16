@@ -35,5 +35,9 @@ namespace LogoIntersectionFinder.Sweep
             else
                 return 0;
         }
+        public override string ToString()
+        {
+            return P.ToString();
+        }
     }
 }

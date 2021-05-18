@@ -58,6 +58,7 @@
     <Compile Include="Helpers\FileGenerator.cs" />
     <Compile Include="Helpers\IntersectionType.cs" />
     <Compile Include="Helpers\Point.cs" />
+    <Compile Include="Helpers\RandomGenerator.cs" />
     <Compile Include="Helpers\Segment.cs" />
     <Compile Include="Helpers\Vector.cs" />
     <Compile Include="LogoParser\Turtle.cs" />
@@ -68,6 +69,16 @@
     <Compile Include="Sweep\EventSegmentType.cs" />
     <Compile Include="Sweep\SegmentIntersectionChecker.cs" />
     <Compile Include="Sweep\SweepAlgorithm.cs" />
+    <Compile Include="Tests\ComplexityTests.cs" />
+    <Compile Include="Tests\Horizontal.cs" />
+    <Compile Include="Tests\HorizontalPlusIntersection.cs" />
+    <Compile Include="Tests\Random.cs" />
+    <Compile Include="Tests\Saw.cs" />
+    <Compile Include="Tests\SawPlusIntersection.cs" />
+    <Compile Include="Tests\Snail.cs" />
+    <Compile Include="Tests\SnailPlusIntersection.cs" />
+    <Compile Include="Tests\Squares.cs" />
+    <Compile Include="Tests\SquaresPlusIntersection.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

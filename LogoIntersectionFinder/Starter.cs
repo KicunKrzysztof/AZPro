@@ -3,6 +3,7 @@ using System.Text;
 using LogoIntersectionFinder.Sweep;
 using LogoIntersectionFinder.LogoParser;
 using LogoIntersectionFinder.Helpers;
+using LogoIntersectionFinder.Tests;
 using System.IO;
 using System.Linq;
 
@@ -25,6 +26,7 @@ namespace LogoIntersectionFinder
             Console.WriteLine("Key in logo program here, or file with semicolon-separated programs");
             Console.WriteLine("Key in \"exit\" to close");
             Console.WriteLine("Key in \"filegen\" to generate file");
+            Console.WriteLine("Key in \"comp\" for complexity tests");
             Console.WriteLine("########################################################");
             Console.WriteLine("########################################################");
 
@@ -52,6 +54,12 @@ namespace LogoIntersectionFinder
                         string filename = Console.ReadLine();
                         FileGenerator.GenerateFile(filename, fileLen);
                     }
+                    continue;
+                }
+                if (input.Equals("comp"))
+                {
+                    ComplexityTests.Run(myTurtle, SweepAlgorithm);
+                    Console.WriteLine("Tests done");
                     continue;
                 }
                 string program;

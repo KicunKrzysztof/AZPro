@@ -33,9 +33,9 @@ namespace LogoIntersectionFinder.Sweep
             Vector vab = new Vector(ab.Point2.X - ab.Point1.X, ab.Point2.Y - ab.Point1.Y);
             Vector vac = new Vector(cd.Point1.X - ab.Point1.X, cd.Point1.Y - ab.Point1.Y);
             Vector vad = new Vector(cd.Point2.X - ab.Point1.X, cd.Point2.Y - ab.Point1.Y);
-            int val1 = vab.CrossProduct(vac);
-            int val2 = vab.CrossProduct(vad);
-            int val3 = val1 * val2;
+            long val1 = vab.CrossProduct(vac);
+            long val2 = vab.CrossProduct(vad);
+            int val3 = SaveMultiply(val1, val2);
             if (val3 == 0)
             {
                 if (val1 == 0 && val2 == 0 && OneLineOverlapCheck(ab, cd))
@@ -55,6 +55,16 @@ namespace LogoIntersectionFinder.Sweep
                 return IntersectionType.Middle;
             return IntersectionType.None;
         }
+
+        private static int SaveMultiply(long val1, long val2)
+        {
+            if (val1 == 0 || val2 == 0)
+                return 0;
+            if (val1 < 0 && val2 < 0 || val1 > 0 && val2 > 0)
+                return 1;
+            return -1;
+        }
+
         private static bool PointsOnOneLineCheck(Point p1, Point p2, Point p3)
         {
             return Math.Min(p1.X, p2.X) <= p3.X && p3.X <= Math.Max(p1.X, p2.X)

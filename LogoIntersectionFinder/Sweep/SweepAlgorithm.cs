@@ -124,8 +124,20 @@ namespace LogoIntersectionFinder.Sweep
             eventsQueue = new AVL<Event>();
             foreach(Segment s in segments)
             {
-                Point entryPoint = s.GetLeftPoint();
-                Event newEvent = new Event(entryPoint, s), existingEvent;
+                Point leftPoint = s.GetLeftPoint();
+                Event newEvent = new Event(leftPoint, s), existingEvent;
+                existingEvent = eventsQueue.Find(newEvent);
+                if (existingEvent != null)
+                {
+                    existingEvent.AddSegment(s, EventSegmentType.OnEnd);
+                }
+                else
+                {
+                    eventsQueue.Add(newEvent);
+                }
+
+                Point rightPoint = s.GetRightPoint();
+                newEvent = new Event(rightPoint, s);
                 existingEvent = eventsQueue.Find(newEvent);
                 if (existingEvent != null)
                 {

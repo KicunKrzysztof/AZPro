@@ -21,6 +21,9 @@ namespace TestsProject
         [DataRow(0, 5, 0, 0, 0, 10, 0, 5, IntersectionType.EndToEndP1)]
         [DataRow(0, 5, 0, 0, 1, 5, -1, 5, IntersectionType.OnSegmentP1)]
         [DataRow(0, 5, 0, 0, 0, 4, 0, 6, IntersectionType.Overlap)]
+
+        [DataRow(0, 0, 218, 0, 218, -220, -3, -220, IntersectionType.None)]
+        [DataRow(-23959, -23968, -23960, 23959, -22899, 22900, 22910, 22899, IntersectionType.None)]
         public void TestIntersectionOccurs(int ax, int ay, int bx, int by, int cx, int cy, int dx, int dy, IntersectionType type)
         {
             Point a = new Point(ax, ay);
